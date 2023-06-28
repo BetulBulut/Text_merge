@@ -1,0 +1,129 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <link
+            href="https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@500&family=Nunito:wght@500&display=swap"
+            rel="stylesheet"
+    />
+    <style>
+        body {
+            margin: 0;
+            background-color:#ffffdf
+        }
+        * {
+            box-sizing: border-box;
+            font-family: "Nunito", sans-serif;
+        }
+        .main-nav{
+            display: inline-block;
+            width: calc(100% - 160px);
+            font-size: larger;
+            text-align: right;
+        }
+        header {
+            background-color: chocolate;
+            color: white;
+            padding: 8px 16px;
+
+        }
+        #link1 {
+            display: inline-block;
+            color: white;
+            border-radius: 8px;
+            padding: 8px;
+            text-decoration: none;
+        }
+        #sonuc{
+            width: 500px;
+            height:125px ;
+        }
+
+        input{
+            height: 125px;
+        }
+        output{
+
+            height:125px;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+<header>
+    <h1 id="start"><a href="#" id="link1">Metin Birleştirme</a></h1>
+
+    <nav class="main-nav">
+    </nav>
+</header>
+<br>
+<br>
+<div class = "container">
+    <div class = "row ">
+        <div class ="container-fluid">
+            <div class="row d-block">
+                <div class="col-sm-6 float-sm-left">
+                    <h1 class = "text-center"> Metinler: </h1>
+                    <div class = "card-body">
+                        <form th:action="@{/}"  th:object="${metin}" method="POST">
+                            <div class ="form-group">
+                                <label> Metni Giriniz: </label>
+                               <input
+                                        type = "text"
+                                        name = "metingir"
+                                        th:field="*{cumle}"
+                                        class = "form-control"
+
+                                />
+
+                            </div>
+                            <div class = "box-footer">
+                                <div class = "box-footer">
+                                    <button type="submit" class = "btn btn-primary">
+                                        Ekle
+                                    </button>
+                                    <a th:href = "@{/metin/temizle}"
+                                       class = "btn btn-danger">Temizle</a>
+
+                                </div>
+
+
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <!--sonuc gösterilecek olan textbox-->
+            <div class="col-sm-6 float-sm-left">
+                <h1 class = "text-center"> Çıktı: </h1>
+                <div class = "card-body">
+                    <form  th:action="@{/metin/birlestir}"  method="GET">
+                        <label> Sonuç: </label>
+                        <div class ="form-group">
+
+
+                            <textarea id="sonuc" th:inline="text">[[${sonuc}]]</textarea>
+
+                        </div>
+                        <button type="submit" class = "btn btn-primary">
+                            Birleştir
+                        </button>
+                        <a th:href = "@{/metin/kaydet}"
+                           class = "btn btn-danger">Kaydet</a>
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
